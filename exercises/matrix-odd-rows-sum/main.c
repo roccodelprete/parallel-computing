@@ -28,11 +28,6 @@ int *arrayAllocation(const int size) {
 int **allocateMatrix(const int rows, const int cols) {
     int **matrix = calloc(rows, sizeof(int *));
 
-    if (matrix == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(1);
-    }
-
 
     for (int i = 0; i < rows; i++) {
         matrix[i] = calloc(cols, sizeof(int));
