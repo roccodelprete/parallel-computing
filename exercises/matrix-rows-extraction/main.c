@@ -13,6 +13,11 @@
 * i vettori corrispondenti alle righe estratte.
  */
 
+struct returnType {
+    int **results;
+    double time;
+};
+
 int** matrixAllocation(const int rows, const int cols) {
     int **matrix = calloc(rows, sizeof(int*));
     for (int i = 0; i < rows; i++) {
@@ -63,35 +68,47 @@ double getExecutionTime(const double start, const double end) {
     return end - start;
 }
 
-void extractRows(int **matrix, const int rows, const int cols, const int numThreads) {
-#pragma omp parallel shared(matrix, rows, cols, numThreads) num_threads(numThreads)
+struct returnType extractRows(int **matrix, const int rows, const int cols, const int numThreads) {
+    int i = 0, j = 0;
+
+    struct returnType out;
+    out.results = matrixAllocation(rows, cols);
+
+    for (int k = 0; k < rows / numThreads; k++) {
+        for (int l = 0; l < cols; l++) {
+            out.results[k][l] = 1;
+        }
+    }
+
+    const double startTime = omp_get_wtime();
+
+#pragma omp parallel private(i, j) shared(matrix, out, rows, cols, numThreads) num_threads(numThreads)
     {
         const int threadID = omp_get_thread_num();
         const int rowsPerThread = rows / numThreads;
-        const int startRow = threadID * rowsPerThread;
-        int endRow = startRow + rowsPerThread;
+        const int rest = rows % numThreads;
+        int start, end;
 
-        if (threadID == numThreads - 1) {
-            endRow += rows % numThreads;
+        if (threadID < rest) {
+            start = threadID * (rowsPerThread + 1);
+            end = start + (rowsPerThread + 1);
+        } else {
+            start = threadID * rowsPerThread + rest;
+            end = start + rowsPerThread;
         }
 
-        for (int i = startRow; i < endRow; i += 2) {
-            const int *row1 = matrix[i];
-            const int *row2 = matrix[i + 1];
-            int *result = calloc(cols, sizeof(int));
-
-            for (int j = 0; j < cols; j++) {
-                result[j] = row1[j] * row2[j];
+        for (i = start; i < end; i++) {
+            for (j = 0; j < cols; j++) {
+                out.results[i][j] = matrix[i][j] * matrix[i + 1][j];
             }
-
-            #pragma omp critical
-            {
-                printf("\nThread %d, Rows %d and %d product: \n", threadID, i, i + 1);
-                printArray(result, cols);
-            }
-            free(result);
         }
     }
+
+    const double endTime = omp_get_wtime();
+
+    out.time = getExecutionTime(startTime, endTime);
+
+    return out;
 }
 
 int main(void) {
@@ -109,7 +126,12 @@ int main(void) {
     printf("\nInsert number of threads: ");
     scanf("%d", &numThreads);
 
-    extractRows(matrix, rows, cols, numThreads);
+    const struct returnType result = extractRows(matrix, rows, cols, numThreads);
+
+    printf("\nResult: \n");
+    printMatrix(result.results, rows / numThreads, cols);
+
+    printf("\nExecution time: %f\n", result.time);
 
     freeMatrix(matrix, rows);
 
