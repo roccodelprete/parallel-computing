@@ -86,9 +86,6 @@ void freeMatrix(int **matrix, const int rows) {
     for (int i = 0; i < rows; i++) {
         free(matrix[i]);
     }
-
-    matrix = NULL;
-    free(matrix);
 }
 
 double executionTime(const double start, const double end) {
