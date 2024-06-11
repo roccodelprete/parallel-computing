@@ -3,15 +3,15 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="CMakePresetLoader">{
-  &quot;useNewFormat&quot;: true
-}</component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
   <component name="CMakeReloadState">
     <option name="reloaded" value="true" />
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="matrix_columns_minimum" targetName="matrix_columns_minimum" />
+      <config projectName="matrix_columns_extraction_with_sum_exe_8" targetName="matrix_columns_extraction_with_sum_exe_8" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -20,7 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="834a6baf-903f-41b8-ace1-578a2f4b4723" name="Changes" comment="">
+    <list default="true" id="0638f6ee-384f-40fc-88ae-f195ac60f637" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../matrix-columns-minimum/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../matrix-columns-minimum/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../matrix-generation-with-vectors-on-columns/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../matrix-generation-with-vectors-on-columns/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,10 +42,10 @@
     <option name="minorVersion" value="1.2" />
     <option name="productBranch" value="Classic" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
-}</component>
-  <component name="ProjectId" id="2hgvabxgby8LwlcRko3CTSNoIrf" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2hk0y9q7SOT3cNFo7BRlgIQbpCi" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,17 +59,18 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/rocco/uni/parallel-computing/exercises/matrix-columns-minimum",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
+    "ignore.virus.scanning.warn.message": "true",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="matrix_columns_minimum" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="matrix_columns_minimum" TARGET_NAME="matrix_columns_minimum" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="matrix_columns_minimum" RUN_TARGET_NAME="matrix_columns_minimum">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="matrix_columns_extraction_with_sum_exe_8" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="matrix_columns_extraction_with_sum_exe_8" TARGET_NAME="matrix_columns_extraction_with_sum_exe_8" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="matrix_columns_extraction_with_sum_exe_8" RUN_TARGET_NAME="matrix_columns_extraction_with_sum_exe_8">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -77,13 +79,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="834a6baf-903f-41b8-ace1-578a2f4b4723" name="Changes" comment="" />
-      <created>1718028599865</created>
+      <changelist id="0638f6ee-384f-40fc-88ae-f195ac60f637" name="Changes" comment="" />
+      <created>1718123019538</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1718028599865</updated>
-      <workItem from="1718028601412" duration="2855000" />
-      <workItem from="1718120623504" duration="6000" />
+      <updated>1718123019538</updated>
+      <workItem from="1718123020977" duration="156000" />
     </task>
     <servers />
   </component>

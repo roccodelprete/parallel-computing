@@ -107,7 +107,7 @@ struct returnType matrixColumnsGeneration(const int *firstArray, const int *seco
     int i = 0, j = 0;
 
     const double start = omp_get_wtime();
-# pragma omp parallel for private(i, j) shared(out, size, firstArray, secondArray)
+# pragma omp parallel for private(i, j) shared(out, size, firstArray, secondArray) num_threads(numThreads)
     for (j = 0; j < matrixCols; j += 2) {
         for (i = 0; i < matrixRows; i++) {
             const int threadId = omp_get_thread_num();

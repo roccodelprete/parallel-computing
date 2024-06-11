@@ -11,7 +11,7 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="matrix_columns_minimum" targetName="matrix_columns_minimum" />
+      <config projectName="matrix_block_sum_exe_11" targetName="matrix_block_sum_exe_11" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -20,7 +20,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="834a6baf-903f-41b8-ace1-578a2f4b4723" name="Changes" comment="">
+    <list default="true" id="60e6594e-ff65-4912-80af-d27bcb48e9b6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../matrix-columns-minimum/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../matrix-columns-minimum/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../matrix-generation-with-vectors-on-columns/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/../matrix-generation-with-vectors-on-columns/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,33 +43,33 @@
     <option name="productBranch" value="Classic" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2hgvabxgby8LwlcRko3CTSNoIrf" />
+  <component name="ProjectId" id="2hjxJm81gGJRRzK0hQxHI2AdK4W" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/rocco/uni/parallel-computing/exercises/matrix-columns-minimum",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
-    <configuration name="matrix_columns_minimum" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="matrix_columns_minimum" TARGET_NAME="matrix_columns_minimum" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="matrix_columns_minimum" RUN_TARGET_NAME="matrix_columns_minimum">
+    <configuration name="matrix_block_sum_exe_11" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="matrix_block_sum_exe_11" TARGET_NAME="matrix_block_sum_exe_11" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="matrix_block_sum_exe_11" RUN_TARGET_NAME="matrix_block_sum_exe_11">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -77,13 +78,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="834a6baf-903f-41b8-ace1-578a2f4b4723" name="Changes" comment="" />
-      <created>1718028599865</created>
+      <changelist id="60e6594e-ff65-4912-80af-d27bcb48e9b6" name="Changes" comment="" />
+      <created>1718121218100</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1718028599865</updated>
-      <workItem from="1718028601412" duration="2855000" />
-      <workItem from="1718120623504" duration="6000" />
+      <updated>1718121218100</updated>
+      <workItem from="1718121219581" duration="1623000" />
+      <workItem from="1718123207923" duration="3000" />
     </task>
     <servers />
   </component>
