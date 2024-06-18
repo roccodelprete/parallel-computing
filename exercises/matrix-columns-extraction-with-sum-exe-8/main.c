@@ -3,85 +3,33 @@
 #include <omp.h>
 #include <time.h>
 
-int **initMatrix(int, int);
-void printMatrix(int **, int, int);
-void printArray(int *, int);
+/**
+* Implementare un programma parallelo per l’ambiente
+* multicore con np unità processanti che impieghi la
+* libreria OpenMP. Il programma deve essere
+* organizzato come segue: il core master deve generare
+* una matrice A di dimensione N×M. Quindi, ogni core
+* deve estrarre N/p colonne ed effettuare localmente la
+* somma degli elementi delle sottomatrici estratte,
+* conservando il risultato in un vettore b di dimensione
+* M.
+*/
 
-int main() {
-    int rows, cols, p, i, j;
-    int *b;
-    int **A;
-    double start, end;
-
-    srand(time(NULL));
-
-    printf("Inserire il numero di thread: ");
-    scanf("%d", &p);
-
-    printf("\nInserire il numero di righe della matrice: ");
-    scanf("%d", &rows);
-
-    printf("\nInserire il numero di colonne della matrice, che equivale alla dimensione del vettore risultante: ");
-    scanf("%d", &cols);
-
-    A = initMatrix(rows, cols);
-    b = (int *) calloc(cols, sizeof(int));
-
-    printf("Matrice A:\n");
-    printMatrix(A, rows, cols);
-
-    start = omp_get_wtime();
-
-#pragma omp parallel private(i,j) shared(A, b, rows, cols) num_threads(p)
-    {
-        int tid = omp_get_thread_num(); //estraggo id thread corrente
-        int chunk_size = cols / p; //calcolo quante colonne dare ad ogni core
-        int r = cols % p; // calcolo il resto per capire quanti core avranno una colonna in piu
-        int start_col, end_col;
-
-        if (tid < r) { // tutti gli id con indice inferiore al resto
-            start_col = tid * (chunk_size + 1); // ottengo la prima colonna da usare con la moltiplicazione tra l'indice dell'id e il numero di colonne + 1
-            end_col = start_col + chunk_size + 1; // ottengo la colonna successiva alle colonne che effettivamente userò per il singolo core
-        } else {
-            start_col = tid * chunk_size + r; //start col in qureesto caso è uguale a id thread * numero di colonne + il resto
-            end_col = start_col + chunk_size;
-        }
-
-        for (j = start_col; j < end_col; j++) {  //scorro le varie colonne
-            for (i = 0; i < rows; i++) { // per ogni colonna sommo i vari valori
-                b[j] += A[i][j];
-            }
+void fillMatrix(int **mat, int rows, int cols) {
+    for (int i=0; i<rows; i++) {
+        for (int j=0; j<cols; j++) {
+            mat[i][j] = 1 + rand() % 10;
         }
     }
-
-    end = omp_get_wtime();
-
-    printf("\nTempo di esecuzione della regione parallela: %lf\n", end-start);
-
-    printf("\nVettore risultante:\n");
-    printArray(b, cols);
-
-    for (int k=0; k<rows; k++) {
-        free(A[k]);
-    }
-    free(A);
-    free(b);
-
-    return 0;
 }
 
 int **initMatrix(int rows, int cols) {
-    int **mat = (int **) calloc(rows, sizeof(int *));
+    int **mat = calloc(rows, sizeof(int *));
     for (int row=0; row<rows; row++) {
         mat[row] = (int *) calloc(cols, sizeof(int));
     }
 
-    for (int i=0; i<rows; i++) {
-        for (int j=0; j<cols; j++) {
-            mat[i][j] = rand()%30;
-        }
-    }
-    printf("\n");
+    fillMatrix(mat, rows, cols);
 
     return mat;
 }
@@ -101,4 +49,69 @@ void printArray(int *arr, int size) {
         printf("\t%d", *(arr+i));
     }
     printf("\n");
+}
+
+void matrixColumnsExtractionWithSum(int **matrix, const int rows, const int cols, int numThreads) {
+    int *result = calloc(cols, sizeof(int));
+    int i, j;
+
+    const double start = omp_get_wtime();
+#pragma omp parallel private(i,j) shared(matrix, result, rows, cols) num_threads(numThreads)
+    {
+        int threadId = omp_get_thread_num();
+        int chunk_size = cols / numThreads;
+        int rest = cols % numThreads;
+        int start_col, end_col;
+
+        if (threadId < rest) {
+            start_col = threadId * (chunk_size + 1);
+            end_col = start_col + chunk_size + 1;
+        } else {
+            start_col = threadId * chunk_size + rest;
+            end_col = start_col + chunk_size;
+        }
+
+        for (j = start_col; j < end_col; j++) {
+            for (i = 0; i < rows; i++) {
+                result[j] += matrix[i][j];
+            }
+        }
+    }
+
+    const double end = omp_get_wtime();
+
+    printf("\nExecution time = %lf\n", end - start);
+
+    printf("\nResult array:\n");
+    printArray(result, cols);
+
+    for (int k = 0; k < rows; k++) {
+        free(matrix[k]);
+    }
+    free(matrix);
+    free(result);
+}
+
+int main() {
+    int rows, cols, numThreads;
+
+    srand(time(NULL));
+
+    printf("Insert thread numbers: ");
+    scanf("%d", &numThreads);
+
+    printf("\nInsert matrix rows: ");
+    scanf("%d", &rows);
+
+    printf("\nInsert matrix cols: ");
+    scanf("%d", &cols);
+
+    int **matrix = initMatrix(rows, cols);
+
+    printf("Matrix:\n");
+    printMatrix(matrix, rows, cols);
+
+    matrixColumnsExtractionWithSum(matrix, rows, cols, numThreads);
+
+    return 0;
 }
