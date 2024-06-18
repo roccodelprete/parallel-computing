@@ -57,7 +57,7 @@ double getExecutionTime(const double start, const double end) {
     return end - start;
 }
 
-void extractRows(int **matrix, const int rows, const int cols, const int numThreads) {
+void extractRowsAndPuntualProductCalculation(int **matrix, const int rows, const int cols, const int numThreads) {
     int i = 0, j = 0;
 
     const double startTime = omp_get_wtime();
@@ -121,7 +121,7 @@ int main(void) {
     printf("\nInsert number of threads: ");
     scanf("%d", &numThreads);
 
-    extractRows(matrix, rows, cols, numThreads);
+    extractRowsAndPuntualProductCalculation(matrix, rows, cols, numThreads);
 
     return 0;
 }
