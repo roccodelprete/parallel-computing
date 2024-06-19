@@ -3,6 +3,16 @@
 #include <stdlib.h>
 #include <time.h>
 
+/**
+* Implementare un programma parallelo per l’ambiente
+* multicore con np unità processanti che impieghi la
+* libreria OpenMP. Il programma deve essere
+* organizzato come segue: il core master deve generare
+* una matrice di dimensione N×N, ogni core deve
+* estrarre N/np righe e calcolare il prodotto puntuale tra
+* i vettori corrispondenti alle righe estratte.
+*/
+
 void fillMatrix(int **matrix, const int rows, const int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -63,6 +73,12 @@ void extractRowsAndPuntualProductCalculation(int **matrix, const int rows, const
     const double startTime = omp_get_wtime();
     int **results = matrixAllocation(numThreads, cols, 0);
 
+     for (i = 0; i < numThreads; i++) {
+         for (j = 0; j < cols; j++) {
+             results[i][j] = 1;
+         }
+     }
+
 #pragma omp parallel private(i, j) shared(matrix, results, cols, numThreads) num_threads(numThreads)
     {
         const int threadID = omp_get_thread_num();
@@ -82,9 +98,9 @@ void extractRowsAndPuntualProductCalculation(int **matrix, const int rows, const
             end = rows;
         }
 
-        for (i = start; i < end - 1; i++) {
+        for (i = start; i < end; i++) {
             for (j = 0; j < cols; j++) {
-                results[threadID][j] = matrix[i][j] * matrix[i + 1][j];
+                results[threadID][j] *= matrix[i][j];
             }
         }
 

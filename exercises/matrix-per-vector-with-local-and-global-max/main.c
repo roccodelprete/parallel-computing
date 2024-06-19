@@ -78,6 +78,16 @@ void printArray(int *array, int size) {
     printf("\n");
 }
 
+void free3DMatrix(int ***matrix, const int rows, const int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            free(matrix[i][j]);
+        }
+        free(matrix[i]);
+    }
+    free(matrix);
+}
+
 void matrixPerVectorWithLocalAndGlobalMax(int ***matrix, const int *array, const int rows, const int cols,
                                           const int numThreads) {
     int i = 0, j = 0, globalMax = INT_MIN;
@@ -90,30 +100,31 @@ void matrixPerVectorWithLocalAndGlobalMax(int ***matrix, const int *array, const
         const int threadId = omp_get_thread_num();
         const int matrixRows = rows / numThreads;
         matrix[threadId] = initMatrix(matrixRows, cols, 1);
-        int **puntualProductPerThread = initMatrix(numThreads, matrixRows, 0);
 
 #pragma omp critical
         {
             printf("Matrix for thread %d\n", threadId);
-            printMatrix(matrix[threadId], rows / numThreads, cols);
+            printMatrix(matrix[threadId], matrixRows, cols);
         }
+
+        int **matVetProductPerThread = initMatrix(numThreads, matrixRows, 0);
 
         for (i = 0; i < matrixRows; i++) {
             for (j = 0; j < cols; j++) {
-                puntualProductPerThread[threadId][i] += matrix[threadId][i][j] * array[j];
+                matVetProductPerThread[threadId][i] += matrix[threadId][i][j] * array[j];
             }
         }
 
 #pragma omp critical
         {
-            printf("Puntual product array for thread %d: ", threadId);
-            printArray(puntualProductPerThread[threadId], matrixRows);
+            printf("Matrix per array product for thread %d: ", threadId);
+            printArray(matVetProductPerThread[threadId], matrixRows);
             printf("\n");
         }
 
         for (i = 0; i < matrixRows; i++) {
-            if (puntualProductPerThread[threadId][i] > localMax[threadId]) {
-                localMax[threadId] = puntualProductPerThread[threadId][i];
+            if (matVetProductPerThread[threadId][i] > localMax[threadId]) {
+                localMax[threadId] = matVetProductPerThread[threadId][i];
             }
         }
 
@@ -122,7 +133,7 @@ void matrixPerVectorWithLocalAndGlobalMax(int ***matrix, const int *array, const
             printf("Local max for thread %d: %d\n", threadId, localMax[threadId]);
 
             for (i = 0; i < numThreads; i++) {
-                free(puntualProductPerThread[i]);
+                free(matVetProductPerThread[i]);
             }
         }
     }
@@ -146,10 +157,7 @@ void matrixPerVectorWithLocalAndGlobalMax(int ***matrix, const int *array, const
 
     printf("Global max: %d\n", globalMax);
 
-    for (i = 0; i < numThreads; i++) {
-        free(matrix[i]);
-    }
-
+    free3DMatrix(matrix, numThreads, rows / numThreads);
     free(array);
     free(localMax);
 }
