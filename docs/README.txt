@@ -1,1 +1,0 @@
-Gli appunti mancano delle ultime lezioni, di cui però ho inserito i PP originali nella cartella indicata.
